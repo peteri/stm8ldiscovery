@@ -1,5 +1,5 @@
 stm8/
-
+	.tab	0,8,16,60
 	#include "mapping.inc"
 	#include "stm8l152c6.inc"
 	#include "boardsetup.inc"
