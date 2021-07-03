@@ -351,3 +351,5 @@ MigrationBackup/
 FlashLedDelay/cbe.err
 stm8discovery.stw
 stm8discovery.wed
+FlashLedDelay/checkres.spy
+FlashLedTimer/cbe.err

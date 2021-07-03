@@ -95,9 +95,9 @@ String.8.0=
 String.2.0=Running ST linker
 String.3.0=lyn $(ObjectFiles), $(OutputPath)$(TargetSName).cod, " " 
 String.3.1=obsend $(OutputPath)$(TargetSName).cod,f,$(OutputPath)$(TargetSName).s19,s
-String.4.0=
+String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).cod $(OutputPath)$(TargetSName).grp $(OutputPath)$(TargetSName).sym
-String.6.0=2021,7,3,14,35,9
+String.6.0=2021,7,3,15,2,24
 String.100.0=ram0:0x0-0xff
 String.100.1=ram1:0x100-0x5fe
 String.100.2=stack:0x5ff-0x7ff
@@ -239,16 +239,31 @@ String.6.0=2021,7,3,14,35,9
 [Root.Source Files.mapping.asm]
 ElemType=File
 PathName=mapping.asm
+Next=Root.Source Files.boardsetup.asm
+
+[Root.Source Files.boardsetup.asm]
+ElemType=File
+PathName=boardsetup.asm
 Next=Root.Source Files.main.asm
 
 [Root.Source Files.main.asm]
 ElemType=File
 PathName=main.asm
+Next=Root.Source Files.stm8l152c6.asm
+
+[Root.Source Files.stm8l152c6.asm]
+ElemType=File
+PathName=stm8l152c6.asm
+Next=Root.Source Files.variables.asm
+
+[Root.Source Files.variables.asm]
+ElemType=File
+PathName=variables.asm
 
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
-Child=Root.Include Files.mapping.inc
+Child=Root.Include Files.boardsetup.inc
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -298,6 +313,16 @@ String.100.0=abslist $(IntermPath)$(InputName).lsr -exe $(OutputPath)$(TargetFNa
 String.2.0=Performing Custom Build on $(InputFile)
 String.6.0=2021,7,3,14,35,9
 
+[Root.Include Files.boardsetup.inc]
+ElemType=File
+PathName=boardsetup.inc
+Next=Root.Include Files.mapping.inc
+
 [Root.Include Files.mapping.inc]
 ElemType=File
 PathName=mapping.inc
+Next=Root.Include Files.variables.inc
+
+[Root.Include Files.variables.inc]
+ElemType=File
+PathName=variables.inc
