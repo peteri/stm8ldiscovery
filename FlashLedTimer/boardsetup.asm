@@ -37,17 +37,17 @@ ram1_end.w	EQU $ram1_segment_end
 ; Setup timers
 ;
 .init_timers.w
-	bset CLK_PCKENR1,#0
-	mov TIM2_PSCR,#$07         ;timer 2 prescaler div by 128
-	mov TIM2_ARRH,#$F4         ;msb must be loaded first
-	mov TIM2_ARRL,#$24         ;we need 488 decimal (0x01E8 for about 1hz
-	bset TIM2_IER,#0           ;set bit 0 for update irq's on irq13
-	bset TIM2_CR1,#0           ;set CEN bit to enable the timer
+	mov TIM2_PSCR,#$07	;timer 2 prescaler div by 128
+	mov TIM2_ARRH,#$F4	;msb must be loaded first
+	mov TIM2_ARRL,#$24	;we need 0x01E8 for about 1hz
+	bset TIM2_IER,#0	;set bit 0 for update irq's on irq19
+	bset TIM2_CR1,#0        ;set CEN bit to enable the timer
 	ret
 ;
 ; Setup CPU
 ;
 .init_cpu.w
 	mov CLK_CKDIVR,#$00	; Full speed 16Mhz
+	bset CLK_PCKENR1,#0	; Send the clock to timer 2
 	ret	
 	end

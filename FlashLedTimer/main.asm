@@ -54,6 +54,7 @@ exitledtoggle
 ;	Interrupt handler for timer 2
 ;	toggles the led.
 ;=========================================
+	interrupt TimerTwoInterrupt
 TimerTwoInterrupt.l
 	bres TIM2_SR1,#0
 	call ledtoggle
@@ -84,7 +85,7 @@ NonHandledInterrupt.l
 	dc.l {$82000000+NonHandledInterrupt}	; irq16
 	dc.l {$82000000+NonHandledInterrupt}	; irq17
 	dc.l {$82000000+NonHandledInterrupt}	; irq18
-	dc.l {$82000000+TimerTwoInterrupt}	; irq19
+	dc.l {$82000000+TimerTwoInterrupt}	; Timer 2
 	dc.l {$82000000+NonHandledInterrupt}	; irq20
 	dc.l {$82000000+NonHandledInterrupt}	; irq21
 	dc.l {$82000000+NonHandledInterrupt}	; irq22
