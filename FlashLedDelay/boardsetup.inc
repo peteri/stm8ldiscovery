@@ -1,1 +1,2 @@
-	EXTERN setup_gpio.l
+	EXTERN init_gpio.l
+	

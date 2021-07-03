@@ -7,7 +7,6 @@ stm8/
 stack_start.w	EQU $stack_segment_start
 stack_end.w	EQU $stack_segment_end
 	segment 'rom'
-	EXTERN	clear_memory.w	
 main.l
 	; initialize SP
 	ldw X,#stack_end
@@ -21,11 +20,47 @@ clear_stack.l
 	jrule clear_stack
 	; we have clear stack
 	; time for more setup
-	call clear_memory ; Clear rest of ram
-	
+	callf clear_memory ; Clear rest of ram
+	callf init_gpio	;setup the gpio pins
 infinite_loop.l
+	call delay
+	call ledtoggle
 	jra infinite_loop
+;========================================
+;	quick and dirty delay loop.
+;========================================
+delay
+	ldw X,#$FFFF
+loop_delay
+	nop
+	decw X
+	jrne loop_delay
+	ret
 
+;========================================
+;
+; Increments led_state and toggles 
+; LEDs depending on the bottom two bits
+;
+;========================================
+ledtoggle	
+	inc led_state
+	btjf led_state,#0,setblue
+; turn blue off
+	bres PC_ODR,#7
+	jra testgreen
+setblue
+; turn blue on
+	bset PC_ODR,#7
+testgreen
+	btjf led_state,#1,setgreen
+	bres PE_ODR,#7
+	jra exitledtoggle
+setgreen
+	bset PE_ODR,#7	
+exitledtoggle
+	ret
+	
 	interrupt NonHandledInterrupt
 NonHandledInterrupt.l
 	iret

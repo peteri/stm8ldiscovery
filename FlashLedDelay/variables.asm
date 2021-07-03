@@ -13,7 +13,7 @@ ram1_end.w	EQU $ram1_segment_end
 ;=============================
 ; Helper routine to clear ram
 ;=============================
-.clear_memory.w
+.clear_memory.l
 	ldw X,#ram0_start
 clear_ram0.l
 	clr (X)
@@ -34,7 +34,7 @@ clear_ram1.l
 ;
 ;==================================
 	segment 'ram0'
-.led_state	ds.w	1
+.led_state.b	ds.b	1
 ;==================================
 ;
 ; Variables in rest of ram stat here

@@ -10,7 +10,7 @@ ram1_end.w	EQU $ram1_segment_end
 ;
 ; Setup up the gpio ports
 ;
-.setup_gpio.l
+.init_gpio.l
 ; set everything to have a pullup resistor in input mode
 	mov PA_CR1,#$FF
 	mov PB_CR1,#$FF
