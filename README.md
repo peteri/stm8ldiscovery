@@ -7,4 +7,6 @@ Projects use the ST Visual Develop environment, create a workspace from the proj
 
 [Flash leds via timer](FlashLedTimer)
 
+[Video Sync](VideoSync)
+
 All projects are copyright free.
