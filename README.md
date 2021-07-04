@@ -9,4 +9,4 @@ Projects use the ST Visual Develop environment, create a workspace from the proj
 
 [Video Sync](VideoSync)
 
-All projects are copyright free.
+All projects are public domain.

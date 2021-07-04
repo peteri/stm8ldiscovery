@@ -1,9 +1,9 @@
 stm8/
 	.tab	0,8,16,60
-
 ;=============================================
 ; Contain all the varible definitions
 ;=============================================
+	#include "constants.inc"
 	#include "mapping.inc"
 
 ram0_start.b	EQU $ram0_segment_start
@@ -32,16 +32,21 @@ clear_ram1.l
 	ret
 ;==================================
 ;
-; Variables in zero page stat here
+; Variables in zero page start here
 ;
 ;==================================
 	segment 'ram0'
-.led_state.b	ds.b	1
+.linebuffer1.w	ds.b	{ScrWidth+2}
+.linebuffer2.w	ds.b	{ScrWidth+2}
 ;==================================
 ;
-; Variables in rest of ram stat here
+; Variables in rest of ram start here
 ;
 ;==================================
 	segment 'ram1'
+.syncdma.w	ds.w	1
+.linenumber.w	ds.b	1
+.enableSPI.w	ds.b	1	;Used to turn on SPI
+.tim3cntr.w	ds.w	1
 	end
 	

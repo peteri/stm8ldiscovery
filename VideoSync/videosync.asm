@@ -1,6 +1,6 @@
 stm8/
 	.tab	0,8,16,60
-
+	#include "constants.inc"
 	#include "mapping.inc"
 	#include "variables.inc"
 	#include "stm8l152c6.inc"
@@ -18,16 +18,11 @@ stm8/
 ; q | 27.30uS +- 0.1 | 437    | 27.3125 | 0.0125
 ;
 ;=====================================================
-line_sync	EQU 75
-no_sync		EQU 600
-short_sync	EQU 38
-long_sync	EQU 437
 .synccomp.w
 
 	DC.W long_sync,long_sync 	;  1 sync pulses
 	DC.W long_sync,long_sync        ;  2 
-	DC.W long_sync,                 ;  3
-	DC.W short_sync 		;    eq pulses
+	DC.W long_sync,short_sync       ;  3
 	DC.W short_sync,short_sync      ;  4
 	DC.W short_sync,short_sync      ;  5
 	DC.W line_sync,no_sync		;  6 Field blanking
@@ -46,8 +41,7 @@ videocount CEQU {videocount+1}
 	DC.W line_sync,no_sync          ;310 Video 
 	DC.W short_sync,short_sync	;311 eq pulses  
 	DC.W short_sync,short_sync      ;312
-	DC.W short_sync		        ;313
-	DC.W long_sync			
+	DC.W short_sync,long_sync       ;313
 	DC.W long_sync,long_sync 	;314 sync pulses
 	DC.W long_sync,long_sync        ;315 
 	DC.W short_sync,short_sync	;316 eq pulses  
@@ -67,53 +61,9 @@ videocount	CEQU	338
 videocount CEQU {videocount+1}
 	UNTIL {videocount eq 622}
 	DC.W line_sync,no_sync		;622 Video Line 
-	DC.W line_sync			;623 Half line  
-	DC.W short_sync		        ;    eq pulse
+	DC.W line_sync,short_sync	;623 Half line  
 	DC.W short_sync,short_sync	;624 eq pulses  
 	DC.W short_sync,short_sync      ;625	
-;=====================================================
-;
-; Quick and dirty test table....
-;
-;=====================================================
-.synccomptestsrc.w
-	DC.W long_sync,                 ;0  
-	DC.W long_sync,                 ;0  
-	DC.W short_sync 		;1  eq pulses
-	DC.W short_sync 		;2  eq pulses
-	DC.W short_sync 		;3  eq pulses
-	DC.W line_sync			;4	
-;	DC.W no_sync          		;5  Video 
-	DC.W line_sync                  ;6 Video Start
-;	DC.W no_sync          		;7  Video 
-	DC.W line_sync                  ;8 Reload DMA
-	DC.W line_sync                  ;6 Video Start
-	DC.W line_sync                  ;6 Video Start
-	DC.W line_sync                  ;6 Video Start
-	DC.W line_sync                  ;6 Video Start
-	DC.W $00ff			;Elephant
-.copydata.w
-	ldw x,#synccomptestsrc
-	ldw y,#synccomptest
-copydataloop
-	ld a,(x)
-	ld (y),a
-        incw x
-        incw y
-        cp a,#$ff
-        jrne copydataloop	
-	ret
-	segment 'ram1'
-.synccomptest.w
-	DC.W long_sync,                 ;0  
-	DC.W short_sync 		;1  eq pulses
-	DC.W short_sync 		;2  eq pulses
-	DC.W short_sync 		;3  eq pulses
-	DC.W line_sync			;4	
-	DC.W no_sync          		;5  Video 
-	DC.W line_sync                  ;6 Video Start
-	DC.W no_sync          		;7  Video 
-	DC.W line_sync                  ;8 Reload DMA
-	DC.W 256			;Elephant
+.synccompend.w
 	end
 	
