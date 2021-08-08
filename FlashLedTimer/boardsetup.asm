@@ -41,8 +41,9 @@ ram1_end.w	EQU $ram1_segment_end
 .init_timers.w
 	mov TIM2_PSCR,#$07	;timer 2 prescaler div by 128
 	mov TIM2_ARRH,#$F4	;msb must be loaded first
-	mov TIM2_ARRL,#$24	;we need 0x01E8 for about 1hz
+	mov TIM2_ARRL,#$24	;we need we need 62500 for about 1hz
 	bset TIM2_IER,#0	;set bit 0 for update irq's on irq19
+	bset TIM2_EGR,#0	;Trigger update event so preload-registers copy
 	bset TIM2_CR1,#0        ;set CEN bit to enable the timer
 	ret
 ;
