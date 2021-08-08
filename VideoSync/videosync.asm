@@ -10,7 +10,7 @@ stm8/
 ;
 ; This is a table of video sync values for PAL timings
 ; Assuming a fsclk of 16MHz
-; Timer 2 runs with a 32us cycle which is 512 clocks.
+; Timer 1 runs with a 32us cycle which is 512 clocks.
 ; pulse widths are (Using values from ITU-R BT.470.5)
 ;   | Value          | Clocks | Actual  | Error
 ; d |  4.70uS +- 0.2 |  75    |  4.6875 | 0.0125
