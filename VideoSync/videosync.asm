@@ -20,7 +20,7 @@ stm8/
 ;=====================================================
 .synccomp.w
 
-	DC.W long_sync,long_sync 	;  1 sync pulses
+	DC.W long_sync,$100 	;  1 sync pulses
 	DC.W long_sync,long_sync        ;  2 
 	DC.W long_sync,short_sync       ;  3
 	DC.W short_sync,short_sync      ;  4

@@ -321,6 +321,11 @@ String.6.0=2021,7,4,1,25,54
 [Root.Include Files.boardsetup.inc]
 ElemType=File
 PathName=boardsetup.inc
+Next=Root.Include Files.constants.inc
+
+[Root.Include Files.constants.inc]
+ElemType=File
+PathName=constants.inc
 Next=Root.Include Files.mapping.inc
 
 [Root.Include Files.mapping.inc]

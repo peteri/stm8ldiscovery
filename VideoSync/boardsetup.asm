@@ -40,15 +40,30 @@ ram1_end.w	EQU $ram1_segment_end
 ; Timer 1 output on PD2 (Sync)
 	bset PD_DDR,#2
 	bset PD_CR1,#2
-; Timer 3 out on PB1 Frame
-	bset PB_DDR,#1
-	bset PB_CR1,#1
 ; SPI MOSI on PB6 Video Data
 	bset PB_DDR,#6
 	bset PB_CR1,#6
+	bset PC_CR2,#6
+;***********************************
+; Optional stuff used for debugging
+;***********************************
+; Timer 3 out on PB1 Frame
+	bset PB_DDR,#1
+	bset PB_CR1,#1
+
 ; SPI CK on PB6 Video Data
 	bset PB_DDR,#5
-	bset PB_CR1,#5	
+	bset PB_CR1,#5
+	bset PC_CR2,#5
+	
+;Output the CCO on PA3	
+;	bset PC_DDR,#4		
+;	bset PC_CR1,#4
+;	bset PC_CR2,#4
+; Line below puts HSI out on PA3
+;	mov CLK_CCOR,#%00000010	
+; Line below puts HSE out on PA3
+;	mov CLK_CCOR,#%00001000	
 	ret
 ;=================================================
 ;
@@ -162,15 +177,28 @@ ram1_end.w	EQU $ram1_segment_end
 	ret	
 ;=========================================================
 ;
-;	Setup CPU
+;	Setup CPU and external clock
 ;
 ;=========================================================
 .init_cpu.w
+; Use external clock on PA2
+	mov CLK_ECKCR,#%00010001
+; Wait for HSERDY
+clk_hse_rdy_set
+	btjf CLK_ECKCR,#1,clk_hse_rdy_set
+	mov CLK_SWR,#%00000100
+	bset CLK_SWCR,#1	;Swap clock
+; Wait for clock switch busy clear...
+clk_sw_busy_clear
+	btjt CLK_SWCR,#0,clk_sw_busy_clear
+	
+; Full speed ahead
 	mov CLK_CKDIVR,#$00	; Full speed 16Mhz
 	bset CLK_PCKENR2,#$1	; Send the clock to timer 1
 	bset CLK_PCKENR1,#$1	; Send the clock to timer 3
 	bset CLK_PCKENR1,#$4	; Send the clock to SPI1
 	bset CLK_PCKENR2,#$4	; Turn on DMA1
+
 	bres ITC_SPR6,#5	; lower priority of Tim 3 capture
 	ret
 ;=========================================================
