@@ -109,6 +109,7 @@ waitforcounterchange
 	mov TIM1_DER,#%00000100	;Turn off CC3 DMA
 	mov DMA1_C2CR,#%00101000  ; Disable DMA
 	; call the demo 50Hz tick
+	bcpl	PC_ODR,#7	;toggle led
 	call demo_video_frame
 	iret
 	

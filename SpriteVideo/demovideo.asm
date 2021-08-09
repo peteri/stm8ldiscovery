@@ -1,8 +1,8 @@
 stm8/
 	.tab	0,8,16,60
 	#include "variables.inc"
-	#include "stm8l152c6.inc"
 	#include "constants.inc"
+	#include "linerender.inc"
 	segment 'ram1'
 videoticks.w	ds.w 1
 onscreen ds.b 1
@@ -10,7 +10,6 @@ onscreen ds.b 1
 ; Called every frame by the video code
 ; we just toggle an led and increment a counter for now.
 .demo_video_frame.w
-	bcpl	PC_ODR,#7	;toggle led
 	ldw	y,videoticks
 	incw	y
 	ldw	videoticks,y
@@ -24,9 +23,8 @@ onscreen ds.b 1
 .demo_video.w
 	call	clear_screen
 demo_video_loop	
-	ld	a,onscreen
-	call	fill_screen
-	inc	onscreen
+	call	udg_copy
+	call	display_welcome
 	call	delay_1_sec
 	jra	demo_video_loop
 ;========================================
@@ -68,4 +66,8 @@ wait_for_tick_change
 	decw	x
 	jrne	delay_x_frames
 	ret
+;	                    1234567890123456789012345678901234567890
+welcomemsg1	DC.B 10,10,"Welcome to the STM8",0
+welcomemsg2	DC.B 10,11," PAL video system",0
+welcomemsg3	DC.B 10,12
 	end

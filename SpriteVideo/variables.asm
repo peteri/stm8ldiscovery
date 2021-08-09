@@ -36,6 +36,9 @@ clear_ram1.l
 ;
 ;==================================
 	segment 'ram0'
+;Keep the line buffers in page zero
+;Means we don't have to deal with
+;crossing a page in the rendering code.
 .linebuffer1.w	ds.b	{ScrWidth+2}
 .linebuffer2.w	ds.b	{ScrWidth+2}
 
@@ -50,5 +53,6 @@ clear_ram1.l
 .enableSPI.w	ds.b	1	;Used to turn on SPI
 .tim3cntr.w	ds.w	1
 .screen.w	ds.b	{ScrWidth mult ScrHeight}
+.udg.w		ds.b	$0100	
 	end
 	

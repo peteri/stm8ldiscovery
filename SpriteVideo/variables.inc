@@ -6,3 +6,4 @@
 	EXTERN	linebuffer2.w
 	EXTERN	tim3cntr.w
 	EXTERN	screen.w
+	EXTERN	udg.w
