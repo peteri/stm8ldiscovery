@@ -241,6 +241,11 @@ String.6.0=2021,8,9,0,24,17
 [Root.Source Files.mapping.asm]
 ElemType=File
 PathName=mapping.asm
+Next=Root.Source Files.demovideo.asm
+
+[Root.Source Files.demovideo.asm]
+ElemType=File
+PathName=demovideo.asm
 Next=Root.Source Files.linerender.asm
 
 [Root.Source Files.linerender.asm]
@@ -343,6 +348,11 @@ Next=Root.Include Files.constants.inc
 [Root.Include Files.constants.inc]
 ElemType=File
 PathName=constants.inc
+Next=Root.Include Files.demovideo.inc
+
+[Root.Include Files.demovideo.inc]
+ElemType=File
+PathName=demovideo.inc
 Next=Root.Include Files.linerender.inc
 
 [Root.Include Files.linerender.inc]
