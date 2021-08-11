@@ -9,4 +9,4 @@ More documentation coming shortly once I've sorted out a good video driver circu
 
 ![sync timing](https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer1.json)
 
-https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer2.json
+![viddata](https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer2.json)
