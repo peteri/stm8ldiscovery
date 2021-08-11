@@ -181,7 +181,7 @@ ram1_end.w	EQU $ram1_segment_end
 ;
 ;=========================================================
 .init_cpu.w
-#IFB INT_CLOCK
+	#IF EXT_CLOCK
 ; Use external clock on PA2
 	mov CLK_ECKCR,#%00010001
 ; Wait for HSERDY
@@ -192,7 +192,7 @@ clk_hse_rdy_set
 ; Wait for clock switch busy clear...
 clk_sw_busy_clear
 	btjt CLK_SWCR,#0,clk_sw_busy_clear
-#END	
+	#ENDIF	
 ; Full speed ahead
 	mov CLK_CKDIVR,#$00	; Full speed 16Mhz
 	bset CLK_PCKENR2,#$1	; Send the clock to timer 1
