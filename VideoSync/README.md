@@ -7,6 +7,6 @@ be finished.
 
 More documentation coming shortly once I've sorted out a good video driver circuit.
 
-https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer1.json
+![sync timing](https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer1.json)
 
 https://svg.wavedrom.com/github/peteri/stm8ldiscovery/main/VideoSync/timer2.json
