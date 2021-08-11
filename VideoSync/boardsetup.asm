@@ -105,7 +105,7 @@ ram1_end.w	EQU $ram1_segment_end
 ; Compare register 2 triggers DMA channel 3
 ; which writes to compare register 1	
 	mov TIM1_CCR2H,#$00	  ; TIM1 Capture/Compare Register 2 High
-	mov TIM1_CCR2L,#$00	  ; TIM1 Capture/Compare Register 2 Low
+	mov TIM1_CCR2L,#$80	  ; TIM1 Capture/Compare Register 2 Low
 ; Compare register 3 triggers serial clocking
 	mov TIM1_CCR3H,#{high TIM1_CC3}  ; TIM1 Capture/Compare Register 3 High
 	mov TIM1_CCR3L,#{low TIM1_CC3}  ; TIM1 Capture/Compare Register 3 High

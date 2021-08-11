@@ -32,8 +32,8 @@ clear_stack.l
 	call init_timers  ; setup the timers.
 ; Lets do it	
 	rim		  ; interrupts on
-infinite_loop.l
 	call demo_video
+infinite_loop.l
 	jra infinite_loop
 ;==============================================
 ;	Interrupt handler for DMA channel
