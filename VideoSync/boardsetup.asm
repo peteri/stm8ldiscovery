@@ -56,13 +56,13 @@ ram1_end.w	EQU $ram1_segment_end
 	bset PB_CR1,#5
 	bset PC_CR2,#5
 	
-;Output the CCO on PA3	
+;Output the CCO on PC4	
 ;	bset PC_DDR,#4		
 ;	bset PC_CR1,#4
 ;	bset PC_CR2,#4
-; Line below puts HSI out on PA3
+; Line below puts HSI out on PC4
 ;	mov CLK_CCOR,#%00000010	
-; Line below puts HSE out on PA3
+; Line below puts HSE out on PC4
 ;	mov CLK_CCOR,#%00001000	
 	ret
 ;=================================================
